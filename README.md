@@ -84,7 +84,7 @@ Program Counter => points to the address of the next instruction
 
 Those flags get set based on the previous instruction
 
-![Alt text](image.png)
+![Alt text](docs/image.png)
 
 ##### C - Carry Flag
 
@@ -283,3 +283,14 @@ N=1 if the bit 7 (sign bit) is 1, 0 otherwise
 ```
 JMP ; Jump to another location --> GOTO
 ```
+
+#### LD65 and CA65
+
+`CA65` is the compiler that generates `.o` files
+
+after generating our `.o` files we need to link them together with `LD65`
+to generate a final `.nes` ROM
+
+but the link needs a configuration file called `nes.cfg`
+
+it has the `memory` layout and the `segments`
