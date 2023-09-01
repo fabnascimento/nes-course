@@ -294,3 +294,31 @@ to generate a final `.nes` ROM
 but the link needs a configuration file called `nes.cfg`
 
 it has the `memory` layout and the `segments`
+
+
+### Addressing Modes:
+
+`immediate Mode`
+```
+LDA #80
+```
+
+loads the A register with the literal decimal value 80
+
+`Absolute (zero-page) MODE`
+```
+LDA $80
+```
+
+Loads the A register with the value inside memory address `$80`
+
+`Absolute (zero-page) INDEXED`
+```
+STA $80,x
+STA $80,y
+```
+
+Stores the value of A into memory address $80 + X
+
+> Zero-page is the region between the addresses $00 and $FF.
+> Since these addresses only require one byte, the 6502 CPU can handle them faster than usual

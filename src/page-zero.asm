@@ -1,6 +1,6 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; The iNES header (contains a total of 16 bytes with the flags)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 .segment "HEADER"
 .org $7FF0                  ; $7FF0 is 16 bytes before $8000 so it is placing the header
                             ; before the bytes of PRG-ROM
@@ -23,16 +23,17 @@ RESET:
     sei         ; Disable all IRQ interrupts
     cld         ; Clear decimal mode flag (not supported by NES)
     ldx #$FF    ; Initialize the stack pointer at $01FF (bottom of the stack)
-    txs 
+    txs
 
     lda #0      ; A = 0
-    ldx #$FF    ; start in the last address X = $FF
+    inx         ; increment X from $FF to $0
 MemLoop:
     sta $0,x    ; stores 0 at "index" of X
-    dex         ; decrement X register, X--
+    dex         ; decrement X register, X--, since we start a 0 it will wrap around
+                ; jumping to FF
     bne MemLoop ; If x is not zero, we loop back to MemLoop
 
-NMI:            ; NMI Handler
+NMI:            ; NMI Handler'
     rti ; return
 IRQ:            ; IRQ handler
     rti ; return

@@ -53,3 +53,6 @@ dkms.conf
 
 # ROM files
 *.nes
+
+# Debugger file
+*.nes.deb
