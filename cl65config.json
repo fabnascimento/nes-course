@@ -1,0 +1,5 @@
+{
+    "executable": "C:\\tools\\cl65.exe",
+    "input": "main.asm",
+    "params": "--verbose"
+}
